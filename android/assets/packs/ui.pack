@@ -1,0 +1,208 @@
+
+ui.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hex
+  rotate: false
+  xy: 1, 255
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+ninepatch_outline
+  rotate: false
+  xy: 1, 153
+  size: 200, 100
+  orig: 200, 100
+  offset: 0, 0
+  index: -1
+ninepatch_rounded
+  rotate: false
+  xy: 259, 411
+  size: 200, 100
+  orig: 200, 100
+  offset: 0, 0
+  index: -1
+ninepatch_shadow_bottom
+  rotate: false
+  xy: 1, 51
+  size: 200, 100
+  orig: 200, 100
+  offset: 0, 0
+  index: -1
+ninepatch_stock
+  rotate: false
+  xy: 259, 309
+  size: 200, 100
+  orig: 200, 100
+  offset: 0, 0
+  index: -1
+timebound
+  rotate: false
+  xy: 461, 451
+  size: 200, 60
+  orig: 200, 60
+  offset: 0, 0
+  index: -1
+timeboundverticle
+  rotate: false
+  xy: 203, 53
+  size: 60, 200
+  orig: 60, 200
+  offset: 0, 0
+  index: -1
+icon-user
+  rotate: false
+  xy: 461, 355
+  size: 80, 94
+  orig: 80, 94
+  offset: 0, 0
+  index: -1
+menu
+  rotate: false
+  xy: 543, 366
+  size: 83, 83
+  orig: 83, 83
+  offset: 0, 0
+  index: -1
+next
+  rotate: false
+  xy: 663, 428
+  size: 83, 83
+  orig: 83, 83
+  offset: 0, 0
+  index: -1
+refresh
+  rotate: false
+  xy: 748, 428
+  size: 83, 83
+  orig: 83, 83
+  offset: 0, 0
+  index: -1
+home-list
+  rotate: false
+  xy: 833, 447
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+icono_info
+  rotate: false
+  xy: 899, 447
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+icono_page
+  rotate: false
+  xy: 461, 289
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+home
+  rotate: false
+  xy: 203, 1
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+icon-search
+  rotate: false
+  xy: 255, 1
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+icon_submenu
+  rotate: false
+  xy: 965, 461
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+icono_setting
+  rotate: false
+  xy: 628, 362
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+back
+  rotate: false
+  xy: 694, 366
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+cursor_higlight
+  rotate: false
+  xy: 756, 366
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+ninepatch_none
+  rotate: false
+  xy: 259, 267
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+cursor_normal
+  rotate: false
+  xy: 301, 247
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+facebook
+  rotate: false
+  xy: 363, 247
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+googleplus
+  rotate: false
+  xy: 265, 185
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+hex-tile
+  rotate: false
+  xy: 327, 185
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+down
+  rotate: false
+  xy: 1, 29
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+right
+  rotate: false
+  xy: 628, 429
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+textfieldshadow
+  rotate: false
+  xy: 425, 287
+  size: 20, 20
+  orig: 20, 20
+  offset: 0, 0
+  index: -1
+rec_vien
+  rotate: false
+  xy: 259, 255
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1

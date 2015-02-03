@@ -1,0 +1,34 @@
+package engine.module.updatehandler;
+
+import com.badlogic.gdx.Gdx;
+
+public class MemoryManager implements IUpdate {
+
+	float count = 0;
+	long last_mem = Gdx.app.getJavaHeap() / 1024;
+	private boolean ignoreUpdate = false;
+
+	@Override
+	public void onUpdate(float delta) {
+		count += delta;
+		if (count >= 5f) {
+			count = 0;
+			long current_mem = Gdx.app.getJavaHeap() / 1024;
+			if (current_mem - last_mem >= 2048) {
+				System.gc();
+				last_mem = Gdx.app.getJavaHeap() / 1024;
+			}
+		}
+	}
+
+	@Override
+	public boolean ignoreUpdate() {
+		return ignoreUpdate;
+	}
+
+	@Override
+	public void setIgnoreUpdate(boolean ignoreUpdate) {
+		this.ignoreUpdate = ignoreUpdate;
+	}
+
+}
