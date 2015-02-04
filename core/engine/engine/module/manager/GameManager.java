@@ -1,6 +1,8 @@
 package engine.module.manager;
 
+
 public class GameManager {
+	
 	private INetworkManager _NetworkManager;
 	
 	public GameManager() {

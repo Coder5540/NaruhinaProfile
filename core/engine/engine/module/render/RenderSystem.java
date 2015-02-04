@@ -6,9 +6,9 @@ import java.util.Iterator;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class RenderSystem {
-	private Comparator<IRender> comparator = null;
+	private Comparator<IRender>	comparator	= null;
 
-	public WildBag<IRender> renders = null;
+	public WildBag<IRender>		renders		= null;
 
 	public enum Layer {
 		GROUND, UI, GAME;
@@ -20,7 +20,7 @@ public class RenderSystem {
 		comparator = new Comparator<IRender>() {
 			@Override
 			public int compare(IRender o1, IRender o2) {
-				return o1.getLayerID() - o2.getLayerID();
+					return o1.getLayerID() - o2.getLayerID();
 			}
 		};
 	}

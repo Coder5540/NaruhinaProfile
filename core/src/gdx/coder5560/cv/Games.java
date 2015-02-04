@@ -3,22 +3,23 @@ package gdx.coder5560.cv;
 import api.viewport.CameraHandler;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.input.GestureDetector;
-import com.badlogic.gdx.math.MathUtils;
 
-import engine.common.R;
 import engine.debug.FPSDebugger;
 import engine.module.render.RenderSystem;
-import engine.module.render.RenderSystem.Layer;
 import engine.module.screens.AbstractGameScreen;
 import engine.module.screens.GameCore;
-import gdx.coder5560.cv.elements.Img;
+import gdx.coder5560.cv.elements.Button;
 
 public class Games extends AbstractGameScreen {
-	CameraHandler cameraHandler;
-	public RenderSystem renderSystem;
+	CameraHandler		cameraHandler;
+	public RenderSystem	renderSystem;
 
 	public Games(GameCore game) {
 		super(game);
@@ -36,15 +37,32 @@ public class Games extends AbstractGameScreen {
 		_Parent.inputMultiplexer.addProcessor(this);
 		_Parent.inputMultiplexer.addProcessor(_Engine);
 		Gdx.input.setInputProcessor(getInputProcessor());
-
-		for (int i = 0; i < 100; i++) {
-			Img img = new Img(texture, Layer.GAME);
-			img.setPosition(MathUtils.random(0, R.SCREEN_WIDTH),
-					MathUtils.random(0, R.SCREEN_HEIGHT));
-			renderSystem.renders.add(img);
-		}
+		
+		AssetManager assetManager = _Parent._AssetSystem.assetManager;
+		assetManager.load("packs/ui.pack", TextureAtlas.class);
+		assetManager.finishLoading();
 	}
 
+	boolean initial = false;
+	public void initial(AssetManager assetManager){
+		initial = true;
+		TextureAtlas atlas = assetManager.get("packs/ui.pack", TextureAtlas.class);
+		Button button = new Button();
+		button.setPosition(100, 100);
+		button.setSize(100, 60);
+		NinePatch ninePatch = new NinePatch(atlas.findRegion("ninepatch_none.png"));
+		button.buildText("Button").buildFontColor(Color.WHITE).buildBackground(ninePatch)
+				.buildOnclick(new Runnable() {
+
+					@Override
+					public void run() {
+						System.out.println("clicked on me");
+					}
+				}, 1.2f);
+		_Engine.addActor(button);
+	}
+	
+	
 	@Override
 	public void resize(int width, int height) {
 		_ViewportSystem.onGameResize(width, height);
@@ -52,7 +70,10 @@ public class Games extends AbstractGameScreen {
 
 	@Override
 	public void update(float delta) {
-
+		_Parent._AssetSystem.onUpdate(delta);
+		if(initial == false && !_Parent._AssetSystem.isLoading()){
+			initial(_Parent._AssetSystem.assetManager);
+		}
 	}
 
 	@Override
@@ -77,11 +98,16 @@ public class Games extends AbstractGameScreen {
 
 	}
 
+	@Override
+	public void pause() {
+		super.pause();
+	}
+
 	private void onDrawBatchUI(SpriteBatch _BatchUI) {
 		FPSDebugger.debugFPS(_BatchUI);
 	}
 
-	Texture texture = new Texture(Gdx.files.internal("badlogic.jpg"));
+	Texture	texture	= new Texture(Gdx.files.internal("badlogic.jpg"));
 
 	private void onDrawBatch(SpriteBatch batch) {
 		renderSystem.render(batch, Gdx.graphics.getDeltaTime());
