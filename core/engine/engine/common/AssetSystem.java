@@ -7,12 +7,16 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import engine.module.updatehandler.IUpdate;
 
 public class AssetSystem implements IUpdate {
-	public AssetManager	assetManager	= new AssetManager();
-	private boolean			isloading		= false;
-	private boolean			ignoreupdate	= false;
+	public AssetManager assetManager = new AssetManager();
+	private AssetUI assetUI;
+	private boolean isloading = false;
+	private boolean ignoreupdate = false;
 
 	public AssetSystem() {
 		super();
+		assetUI = new AssetUI();
+		assetManager.load("packs/ui.pack", TextureAtlas.class);
+		assetManager.finishLoading();
 		Texture.setAssetManager(assetManager);
 	}
 
@@ -31,9 +35,9 @@ public class AssetSystem implements IUpdate {
 		if (ignoreUpdate())
 			return;
 		if (isloading && assetManager.update()) {
+			
 			isloading = false;
 		}
-
 	}
 
 	public void unload(String atlas) {
@@ -51,6 +55,10 @@ public class AssetSystem implements IUpdate {
 
 	public boolean isLoading() {
 		return isloading;
+	}
+
+	public boolean isLoaded() {
+		return assetManager.update();
 	}
 
 }

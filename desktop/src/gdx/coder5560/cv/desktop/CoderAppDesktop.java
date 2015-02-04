@@ -4,7 +4,9 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 import engine.common.R;
+import engine.loading.LoadingScreen;
 import engine.module.screens.GameCore;
+import engine.module.screens.ScreenTransitionFade;
 import gdx.coder5560.cv.Games;
 
 public class CoderAppDesktop {
@@ -14,7 +16,9 @@ public class CoderAppDesktop {
 			@Override
 			public void create() {
 				super.create();
-				setScreen(new Games(this));
+//				setScreen(new Games(this));
+				LoadingScreen loadingScreen = new LoadingScreen(this, new Games(this), ScreenTransitionFade.init(1f));
+				setScreen(loadingScreen);
 			}
 		};
 		config.width = R.SCREEN_WIDTH;
