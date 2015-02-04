@@ -1,10 +1,8 @@
 package engine.module.pool;
 
 import engine.common.OnCompleteListener;
-import engine.module.updatehandler.UpdateHandlerList;
 
 public class PoolManager {
-	public UpdateHandlerList listHandlers;
 
 	public GroupElementPool groupElementPool;
 
@@ -15,7 +13,6 @@ public class PoolManager {
 	public void onCreate(OnCompleteListener onComplete) {
 		// ===========Create pool and then call the event done========
 
-		listHandlers = new UpdateHandlerList();
 
 		groupElementPool = new GroupElementPool();
 

@@ -17,9 +17,7 @@ import engine.module.screens.ScreenTransition;
 
 public class LoadingScreen extends AbstractGameScreen {
 	private AssetManager assetManager;
-
 	private AbstractGameScreen nextScreen;
-
 	private ScreenTransition screenTransition;
 
 	private boolean switchScreen = false;
@@ -101,14 +99,14 @@ public class LoadingScreen extends AbstractGameScreen {
 	}
 
 	public void switchScreen() {
-		// if (!switchScreen) {
-		// setIgnoreUpdate(true);
-		// if (screenTransition == null)
-		// _Parent.setScreen(nextScreen);
-		// else
-		// _Parent.setScreen(nextScreen, screenTransition);
-		// switchScreen = true;
-		// }
+		if (!switchScreen) {
+			setIgnoreUpdate(true);
+			if (screenTransition == null)
+				_Parent.setScreen(nextScreen);
+			else
+				_Parent.setScreen(nextScreen, screenTransition);
+			switchScreen = true;
+		}
 	}
 
 	public boolean isIgnoreUpdate() {

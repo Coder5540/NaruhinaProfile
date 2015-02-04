@@ -12,6 +12,15 @@ public class AssetSystem implements IUpdate {
 	private boolean isloading = false;
 	private boolean ignoreupdate = false;
 
+	private static AssetSystem instance = null;
+
+	public static AssetSystem getInstance() {
+		if (instance == null) {
+			instance = new AssetSystem();
+		}
+		return instance;
+	}
+
 	public AssetSystem() {
 		super();
 		assetUI = new AssetUI();
@@ -35,7 +44,6 @@ public class AssetSystem implements IUpdate {
 		if (ignoreUpdate())
 			return;
 		if (isloading && assetManager.update()) {
-			
 			isloading = false;
 		}
 	}
@@ -49,8 +57,8 @@ public class AssetSystem implements IUpdate {
 		assetManager.load(atlas, TextureAtlas.class);
 	}
 
-	public void isLoaded(String atlas) {
-
+	public boolean isLoaded(String atlas) {
+		return assetManager.isLoaded(atlas);
 	}
 
 	public boolean isLoading() {

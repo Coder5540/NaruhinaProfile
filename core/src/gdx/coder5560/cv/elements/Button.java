@@ -86,5 +86,4 @@ public class Button extends TextButton {
 		});
 		return this;
 	}
-
 }

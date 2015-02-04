@@ -1,5 +1,7 @@
 package gdx.coder5560.cv.desktop;
 
+import naruhina.toeica.ToeicAScreen;
+
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
@@ -17,8 +19,10 @@ public class CoderAppDesktop {
 			public void create() {
 				super.create();
 //				setScreen(new Games(this));
-				LoadingScreen loadingScreen = new LoadingScreen(this, new Games(this), ScreenTransitionFade.init(1f));
-				setScreen(loadingScreen);
+//				LoadingScreen loadingScreen = new LoadingScreen(this, new Games(this), ScreenTransitionFade.init(1f));
+//				setScreen(loadingScreen);
+				
+				setScreen(new ToeicAScreen(this));
 			}
 		};
 		config.width = R.SCREEN_WIDTH;

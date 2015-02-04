@@ -8,5 +8,4 @@ public interface IUpdate {
 
 	public void onUpdate(float delta);
 	
-	
 }

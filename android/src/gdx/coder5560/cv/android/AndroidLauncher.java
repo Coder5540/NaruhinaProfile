@@ -1,12 +1,12 @@
 package gdx.coder5560.cv.android;
 
+import naruhina.toeica.ToeicAScreen;
 import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 
 import engine.module.screens.GameCore;
-import gdx.coder5560.cv.Games;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override
@@ -19,7 +19,7 @@ public class AndroidLauncher extends AndroidApplication {
 			@Override
 			public void create() {
 				super.create();
-				setScreen(new Games(this));
+				setScreen(new ToeicAScreen(this));
 			}
 		};
 		initialize(gameCore, config);

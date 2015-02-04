@@ -7,9 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.Pool.Poolable;
 
-import engine.module.updatehandler.IUpdate;
-import engine.module.updatehandler.UpdateHandlerList;
-
 public class TableElement extends Table implements Poolable {
 	public int id = -1;
 
@@ -33,11 +30,8 @@ public class TableElement extends Table implements Poolable {
 		setOrigin(Align.center);
 	}
 
-	private UpdateHandlerList handlerList = new UpdateHandlerList(4);
-
 	public void act(float deltatime) {
 		if (!mIgnoreUpdate) {
-			handlerList.onUpdate(deltatime);
 			super.act(deltatime);
 		}
 	}
@@ -74,14 +68,6 @@ public class TableElement extends Table implements Poolable {
 		this.drawChildren = drawChildren;
 	}
 
-	public void registerUpdateHandler(IUpdate handler) {
-		handlerList.add(handler);
-	}
-
-	public boolean unregisterUpdateHandler(IUpdate handler) {
-		return handlerList.removeValue(handler, true);
-	}
-
 	public boolean isIgnoreUpdate() {
 		return mIgnoreUpdate;
 	}
@@ -90,18 +76,11 @@ public class TableElement extends Table implements Poolable {
 		mIgnoreUpdate = pIgnoreUpdate;
 	}
 
-	public void clearUpdateHandlers() {
-		if (handlerList == null)
-			return;
-		handlerList.clear();
-	}
-
 	@Override
 	public void reset() {
 		setTouchable(Touchable.disabled);
 		setIgnoreUpdate(false);
 		setId(-1);
-		clearUpdateHandlers();
 		clearChildren();
 		clearActions();
 		clearListeners();
