@@ -1,9 +1,7 @@
 package naruhina.toeica;
 
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import engine.common.Loading;
 import engine.debug.FPSDebugger;
 import engine.module.screens.AbstractGameScreen;
 import engine.module.screens.GameCore;

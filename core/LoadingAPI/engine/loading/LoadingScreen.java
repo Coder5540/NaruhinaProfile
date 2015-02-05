@@ -16,15 +16,15 @@ import engine.module.screens.GameCore;
 import engine.module.screens.ScreenTransition;
 
 public class LoadingScreen extends AbstractGameScreen {
-	private AssetManager assetManager;
-	private AbstractGameScreen nextScreen;
-	private ScreenTransition screenTransition;
+	private AssetManager		assetManager;
+	private AbstractGameScreen	nextScreen;
+	private ScreenTransition	screenTransition;
 
-	private boolean switchScreen = false;
-	private boolean ignoreUpdate = false;
-	private boolean isProcessing = false;
-	private Loading loading;
-	private Runnable onDone = null;
+	private boolean				switchScreen	= false;
+	private boolean				ignoreUpdate	= false;
+	private boolean				isProcessing	= false;
+	private Loading				loading;
+	private Runnable			onDone			= null;
 
 	public LoadingScreen(GameCore game, AbstractGameScreen nextScreen,
 			ScreenTransition screenTransition) {
@@ -33,8 +33,8 @@ public class LoadingScreen extends AbstractGameScreen {
 		this.screenTransition = screenTransition;
 	}
 
-	public void load() {
-		assetManager.load("packs/ui.pack", TextureAtlas.class);
+	private void load() {
+		assetManager.load("toeic/packs/slot.pack", TextureAtlas.class);
 		assetManager.finishLoading();
 		this.isProcessing = true;
 		this.onDone = new Runnable() {
@@ -70,6 +70,8 @@ public class LoadingScreen extends AbstractGameScreen {
 
 		if (isProcessing) {
 			if (_Parent._AssetSystem.isLoaded()) {
+				System.out.println("Loaded Asset : "+ assetManager.getAssetNames().toString("  ,  "));
+				
 				if (onDone != null) {
 					onDone.run();
 				}
@@ -90,11 +92,11 @@ public class LoadingScreen extends AbstractGameScreen {
 
 	}
 
-	float x = R.SCREEN_WIDTH / 4;
-	float width = R.SCREEN_WIDTH / 2;
+	float	x		= R.SCREEN_WIDTH / 4;
+	float	width	= R.SCREEN_WIDTH / 2;
 
 	private void onDrawBatchUI(SpriteBatch batch) {
-		loading.setProgress(loading.getProgress() + .01f);
+		loading.setProgress(assetManager.getProgress());
 		loading.render(batch, Gdx.graphics.getDeltaTime());
 	}
 

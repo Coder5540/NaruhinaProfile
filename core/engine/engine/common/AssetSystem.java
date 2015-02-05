@@ -8,7 +8,6 @@ import engine.module.updatehandler.IUpdate;
 
 public class AssetSystem implements IUpdate {
 	public AssetManager assetManager = new AssetManager();
-	private AssetUI assetUI;
 	private boolean isloading = false;
 	private boolean ignoreupdate = false;
 
@@ -23,9 +22,6 @@ public class AssetSystem implements IUpdate {
 
 	public AssetSystem() {
 		super();
-		assetUI = new AssetUI();
-		assetManager.load("packs/ui.pack", TextureAtlas.class);
-		assetManager.finishLoading();
 		Texture.setAssetManager(assetManager);
 	}
 

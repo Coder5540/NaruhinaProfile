@@ -10,16 +10,20 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
+import engine.common.OnComplete;
 import engine.common.OnCompleteListener;
+import engine.common.R;
+import engine.debug.Log;
 import engine.module.view.IViewController;
 import engine.module.view.IViewElement;
 import engine.module.view.ViewElement;
 import engine.module.view.ViewName;
 
 public class BackgroundView extends ViewElement {
-	private ViewUpdate viewUpdate;
-	private Image background;
-	private Image table;
+	private ViewUpdate	viewUpdate;
+	private Image		background;
+	private Image		table;
+	private Slot		slot;
 
 	public BackgroundView(ViewName viewParentName,
 			IViewController viewController, ViewName viewName, Rectangle bound) {
@@ -37,20 +41,31 @@ public class BackgroundView extends ViewElement {
 			background.setOrigin(Align.center);
 			background.setTouchable(Touchable.disabled);
 		}
-		
+
 		{
 			Texture txtTable = new Texture(
 					Gdx.files.internal("toeic/textures/table.png"));
 			table = new Image(txtTable);
-			table.setSize(getWidth(), getHeight()/2);
+			table.setSize(getWidth(), getHeight() / 2);
 			table.setOrigin(Align.center);
 			table.setTouchable(Touchable.disabled);
 		}
 
 		{
+			slot = new Slot();
+			slot.buildPosition(R.SCREEN_WIDTH / 2, 100, Align.center)
+					.buildOnClick(1.2f, new OnComplete() {
+						public void onComplete(Object data) {
+							Log.d("Clicked");
+						};
+					});
+
+		}
+
+		{
 			addActor(background);
 			addActor(table);
-
+			addActor(slot);
 		}
 
 		viewUpdate = new ViewUpdate() {

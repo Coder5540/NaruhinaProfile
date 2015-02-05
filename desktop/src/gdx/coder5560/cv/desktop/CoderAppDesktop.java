@@ -19,10 +19,10 @@ public class CoderAppDesktop {
 			public void create() {
 				super.create();
 //				setScreen(new Games(this));
-//				LoadingScreen loadingScreen = new LoadingScreen(this, new Games(this), ScreenTransitionFade.init(1f));
-//				setScreen(loadingScreen);
+				LoadingScreen loadingScreen = new LoadingScreen(this, new ToeicAScreen(this), ScreenTransitionFade.init(1f));
+				setScreen(loadingScreen);
 				
-				setScreen(new ToeicAScreen(this));
+//				setScreen(new ToeicAScreen(this));
 			}
 		};
 		config.width = R.SCREEN_WIDTH;

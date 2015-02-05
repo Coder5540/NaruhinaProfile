@@ -1,26 +1,44 @@
 package naruhina.toeica.view;
 
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import engine.common.AssetSystem;
 import engine.common.OnCompleteListener;
+import engine.common.R;
 import engine.element.GroupElement;
 
 public class Slot extends GroupElement {
-	private boolean isSelected = false;
-	public SlotData slotData;
+	private boolean	isSelected	= false;
+	public SlotData	slotData;
+
+	private Image	imgComputer, imgKeyboard;
+	private TextureRegion	regAnswer, regAnswerChoice, regMoney;
 
 	public Slot() {
 		super();
 		slotData = new SlotData();
-	}
+		AssetManager assetManager = AssetSystem.getInstance().assetManager;
+		TextureAtlas textureAtlas = assetManager.get(R.PACK_SLOT,
+				TextureAtlas.class);
+		regAnswer = textureAtlas.findRegion("board_answer9");
+		regAnswerChoice = textureAtlas.findRegion("board_answer-choice");
+		regMoney = textureAtlas.findRegion("board_money");
 
-	public Slot loadAsset() {
-
-		return this;
+		imgComputer = new Image(regAnswer);
+		imgKeyboard = new Image(regMoney);
+		imgComputer.setPosition(
+				imgKeyboard.getX(Align.center) - imgComputer.getWidth() / 2,
+				imgKeyboard.getY(Align.top) + 10);
+		addActor(imgComputer);
+		addActor(imgKeyboard);
 	}
 
 	public Slot buildSize(float width, float height) {
@@ -87,5 +105,4 @@ public class Slot extends GroupElement {
 		});
 		return this;
 	}
-
 }
