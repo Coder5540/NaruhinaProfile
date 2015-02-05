@@ -5,6 +5,7 @@ import com.badlogic.gdx.input.GestureDetector.GestureListener;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+import engine.common.UpdateSystem;
 import engine.debug.Log;
 import engine.module.updatehandler.IUpdate;
 
@@ -13,7 +14,6 @@ public class CameraHandler implements GestureListener, IUpdate {
 	private OrthographicCamera camera;
 	private boolean isCameraBlock = false;
 	private boolean isDoneAction = false;
-	private boolean ignoreUpdate = false;
 	private Rectangle bound;
 
 	public CameraHandler(OrthographicCamera camera) {
@@ -24,24 +24,6 @@ public class CameraHandler implements GestureListener, IUpdate {
 	public CameraHandler() {
 		super();
 	}
-
-	@Override
-	public void onUpdate(float delta) {
-		if (ignoreUpdate())
-			return;
-		updateFling(delta);
-	}
-
-	@Override
-	public boolean ignoreUpdate() {
-		return ignoreUpdate;
-	}
-
-	@Override
-	public void setIgnoreUpdate(boolean ignoreUpdate) {
-		this.ignoreUpdate = ignoreUpdate;
-	}
-
 	public OrthographicCamera getCamera() {
 		return camera;
 	}
@@ -101,6 +83,53 @@ public class CameraHandler implements GestureListener, IUpdate {
 			}
 		}
 	}
+	
+	
+	
+	private boolean ignoreUpdate = false;
+	private float time;
+	private float STEP = UpdateSystem.STEP;
+
+	@Override
+	public void onUpdate(float delta) {
+		if (ignoreUpdate())
+			return;
+		updateFling(delta);
+	}
+	
+	@Override
+	public boolean ignoreUpdate() {
+		return ignoreUpdate;
+	}
+
+	@Override
+	public void setIgnoreUpdate(boolean ignoreUpdate) {
+		this.ignoreUpdate = ignoreUpdate;
+	}
+
+	@Override
+	public float getDeltaTime() {
+		return time;
+	}
+
+	@Override
+	public void setDeltaTime(float delta) {
+		this.time = delta;
+	}
+
+	@Override
+	public float getStep() {
+		return STEP;
+	}
+
+	@Override
+	public void setStep(float STEP) {
+		this.STEP = STEP;
+	}
+
+	
+	
+	
 
 	float flingTimer = 0f;
 	float flingTime = .4f;
@@ -110,7 +139,7 @@ public class CameraHandler implements GestureListener, IUpdate {
 	float amountY = 0f;
 	float initialScale = 1;
 	boolean canfling = false;
-	
+
 	@Override
 	public boolean touchDown(float x, float y, int pointer, int button) {
 		if (isCameraBlock() || !isCameraAvailable())
@@ -157,8 +186,7 @@ public class CameraHandler implements GestureListener, IUpdate {
 	public boolean pan(float x, float y, float deltaX, float deltaY) {
 		if (isCameraBlock() || !isCameraAvailable())
 			return false;
-		camera.position.add(-deltaX * camera.zoom, deltaY
-				* camera.zoom, 0);
+		camera.position.add(-deltaX * camera.zoom, deltaY * camera.zoom, 0);
 		return false;
 	}
 

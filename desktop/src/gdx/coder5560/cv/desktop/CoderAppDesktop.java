@@ -9,7 +9,6 @@ import engine.common.R;
 import engine.loading.LoadingScreen;
 import engine.module.screens.GameCore;
 import engine.module.screens.ScreenTransitionFade;
-import gdx.coder5560.cv.Games;
 
 public class CoderAppDesktop {
 	public static void main (String[] arg) {

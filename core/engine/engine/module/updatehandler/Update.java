@@ -1,9 +1,9 @@
-package naruhina.toeica;
+package engine.module.updatehandler;
 
 import engine.common.UpdateSystem;
 import engine.module.updatehandler.IUpdate;
 
-public class ViewUpdate implements IUpdate {
+public class Update implements IUpdate {
 	private boolean ignoreUpdate = false;
 	private float time;
 	private float STEP = UpdateSystem.STEP;

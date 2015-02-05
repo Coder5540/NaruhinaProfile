@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
+import engine.common.AssetSystem;
 import engine.common.Loading;
 import engine.common.NinePatchSystem;
 import engine.common.NinePatchSystem.NinePatchName;
@@ -48,7 +49,7 @@ public class LoadingScreen extends AbstractGameScreen {
 	@Override
 	public void show() {
 		super.show();
-		this.assetManager = _Parent._AssetSystem.assetManager;
+		this.assetManager = AssetSystem.getInstance().assetManager;
 		NinePatch ninePatch = NinePatchSystem.getInstance().getNinePatch(
 				NinePatchName.STOCK);
 		loading = new Loading();
@@ -69,9 +70,8 @@ public class LoadingScreen extends AbstractGameScreen {
 			return;
 
 		if (isProcessing) {
-			if (_Parent._AssetSystem.isLoaded()) {
-				System.out.println("Loaded Asset : "+ assetManager.getAssetNames().toString("  ,  "));
-				
+			if (AssetSystem.getInstance().isLoaded()) {
+				System.out.println("Loaded Assets");
 				if (onDone != null) {
 					onDone.run();
 				}

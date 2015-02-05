@@ -35,7 +35,6 @@ public class GameViewController extends ViewController {
 	@Override
 	public void update(float delta) {
 		super.update(delta);
-
 	}
 
 	@Override

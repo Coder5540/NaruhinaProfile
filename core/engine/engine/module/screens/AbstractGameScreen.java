@@ -11,6 +11,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.input.GestureDetector.GestureListener;
 import com.badlogic.gdx.math.Vector2;
 
+import engine.common.AssetSystem;
+import engine.common.UpdateSystem;
 import engine.element.Engine;
 
 public abstract class AbstractGameScreen implements Screen, InputProcessor,
@@ -49,6 +51,8 @@ public abstract class AbstractGameScreen implements Screen, InputProcessor,
 		{
 			Gdx.gl.glClearColor(0, 0, 0, 1);
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+			AssetSystem.getInstance().onUpdate(delta);
+			UpdateSystem.getInstance().update(delta);
 		}
 	}
 

@@ -2,15 +2,12 @@ package engine.common;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
-import engine.module.updatehandler.IUpdate;
+import engine.module.updatehandler.Update;
 
-public class AssetSystem implements IUpdate {
+public class AssetSystem extends Update {
 	public AssetManager assetManager = new AssetManager();
-	private boolean isloading = false;
-	private boolean ignoreupdate = false;
-
+	private boolean loaded = false;
 	private static AssetSystem instance = null;
 
 	public static AssetSystem getInstance() {
@@ -26,43 +23,17 @@ public class AssetSystem implements IUpdate {
 	}
 
 	@Override
-	public boolean ignoreUpdate() {
-		return ignoreupdate;
-	}
-
-	@Override
-	public void setIgnoreUpdate(boolean ignoreUpdate) {
-		this.ignoreupdate = ignoreUpdate;
-	}
-
-	@Override
 	public void onUpdate(float delta) {
 		if (ignoreUpdate())
 			return;
-		if (isloading && assetManager.update()) {
-			isloading = false;
+		
+		if (!loaded && assetManager.update()) {
+			loaded = true;
 		}
 	}
 
-	public void unload(String atlas) {
-
-	}
-
-	public void load(String atlas) {
-		isloading = true;
-		assetManager.load(atlas, TextureAtlas.class);
-	}
-
-	public boolean isLoaded(String atlas) {
-		return assetManager.isLoaded(atlas);
-	}
-
-	public boolean isLoading() {
-		return isloading;
-	}
-
 	public boolean isLoaded() {
-		return assetManager.update();
+		return loaded;
 	}
 
 }

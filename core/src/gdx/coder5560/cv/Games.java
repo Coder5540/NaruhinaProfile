@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
+import engine.common.AssetSystem;
 import engine.debug.FPSDebugger;
 import engine.module.render.RenderSystem;
 import engine.module.screens.AbstractGameScreen;
@@ -39,17 +40,17 @@ public class Games extends AbstractGameScreen {
 		_Parent.inputMultiplexer.addProcessor(_Engine);
 		Gdx.input.setInputProcessor(getInputProcessor());
 
-		AssetManager assetManager = _Parent._AssetSystem.assetManager;
+		AssetManager assetManager = AssetSystem.getInstance().assetManager;
 		assetManager.load("packs/ui.pack", TextureAtlas.class);
 		assetManager.finishLoading();
 	}
 
 	boolean initial = false;
 
-	public void initial(AssetManager assetManager) {
+	public void initial() {
 		initial = true;
-		TextureAtlas atlas = assetManager.get("packs/ui.pack",
-				TextureAtlas.class);
+		TextureAtlas atlas = AssetSystem.getInstance().assetManager.get(
+				"packs/ui.pack", TextureAtlas.class);
 
 		Button button = new Button();
 		NinePatch ninePatch = new NinePatch(
@@ -63,7 +64,7 @@ public class Games extends AbstractGameScreen {
 						System.out.println("clicked on me");
 					}
 				}, 1.2f);
-		
+
 		_Engine.addActor(button);
 
 		Image image = new Image(new NinePatch(ninePatch));
@@ -79,9 +80,8 @@ public class Games extends AbstractGameScreen {
 
 	@Override
 	public void update(float delta) {
-		_Parent._AssetSystem.onUpdate(delta);
-		if (initial == false && !_Parent._AssetSystem.isLoading()) {
-			initial(_Parent._AssetSystem.assetManager);
+		if (initial == false && AssetSystem.getInstance().isLoaded()) {
+			initial();
 		}
 	}
 

@@ -1,5 +1,6 @@
 package naruhina.toeica;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import engine.debug.FPSDebugger;
@@ -18,6 +19,8 @@ public class ToeicAScreen extends AbstractGameScreen {
 		super.show();
 		gameViewController = new GameViewController(_Parent, _Engine, this);
 		gameViewController.buildController();
+		_Parent.inputMultiplexer.addProcessor(_Engine);
+		Gdx.input.setInputProcessor(getInputProcessor());
 	}
 
 	@Override
@@ -32,7 +35,6 @@ public class ToeicAScreen extends AbstractGameScreen {
 	@Override
 	public void render(float delta) {
 		super.render(delta);
-
 		_Engine.act(delta);
 		_Engine.draw();
 

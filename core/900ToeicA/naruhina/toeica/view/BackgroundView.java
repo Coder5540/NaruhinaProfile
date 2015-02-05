@@ -33,6 +33,8 @@ public class BackgroundView extends ViewElement {
 	@Override
 	public IViewElement buildComponent() {
 		super.buildComponent();
+		this.setOrigin(Align.center);
+		this.setTransform(true);
 		{
 			Texture txtBackground = new Texture(
 					Gdx.files.internal("toeic/textures/background.jpg"));

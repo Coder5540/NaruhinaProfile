@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 
-import engine.common.AssetSystem;
 import engine.module.manager.GameManager;
 import engine.module.pool.PoolManager;
 
@@ -24,13 +23,11 @@ public abstract class GameCore implements ApplicationListener {
 	public InputMultiplexer		inputMultiplexer;
 	public PoolManager			_PoolManager;
 	public GameManager			_GameManager;
-	public AssetSystem			_AssetSystem;
 
 	@Override
 	public void create() {
 
 		inputMultiplexer = new InputMultiplexer();
-		_AssetSystem = new AssetSystem();
 		_PoolManager = new PoolManager();
 		_PoolManager.onCreate(null);
 		_GameManager = new GameManager();
